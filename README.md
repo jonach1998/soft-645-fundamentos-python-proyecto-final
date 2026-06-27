@@ -1,27 +1,133 @@
-# SOFT-645 Fundamentos de Python Proyecto Final
+# SOFT-645 Final Project
 
+Console application for calculating age statistics for San Pascualin School.
+
+The program asks for a sample size, stores student ages, validates the data, and shows basic statistics such as minimum age, maximum age, average age, and median age.
+
+## Project idea
+
+The company DataByte hired us to create a Python program that calculates statistics from a sample of student ages.
+
+The application must:
+
+- Display the date and time when the application starts.
+- Ask for a secure password before showing the menu.
+- Ask for the sample size.
+- Store student ages in a list.
+- Validate the entered data.
+- Calculate the highest and lowest age.
+- Calculate the average age with one decimal.
+- Calculate the median age.
+- Use `def` functions for the main operations.
+- Provide a console menu with input validations.
 
 ## Project structure
 
 ```text
 soft-645-fundamentos-python-proyecto-final/
-├── main.py
-└── app/
-    ├── menu.py
-    └── options/        # Empty until the project is defined
+├── ProyectoEnunciado.pdf
+├── README.md
+├── requirements.txt
+└── school_age_statistics/
+    ├── __init__.py
+    ├── __main__.py
+    ├── calculations/
+    │   ├── __init__.py
+    │   └── age_statistics.py
+    ├── data_entry/
+    │   ├── __init__.py
+    │   ├── age_input.py
+    │   └── age_sample.py
+    ├── security/
+    │   ├── __init__.py
+    │   └── password.py
+    └── ui/
+        ├── __init__.py
+        └── report.py
 ```
 
-## Program flow
+## Architecture
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Main as __main__.py
+    participant Security as security/password.py
+    participant Entry as data_entry/age_input.py
+    participant Contract as data_entry/age_sample.py
+    participant Stats as calculations/age_statistics.py
+    participant Report as ui/report.py
+
+    User->>Main: Start application
+    Main->>Main: Show date and time
+    Main->>Security: Validate password
+    Security-->>Main: Access granted
+    Main->>User: Show menu
+    User->>Main: Select an option
+    Main->>Entry: Request sample size and ages
+    Entry->>Contract: Create validated AgeSample
+    Contract-->>Entry: Return valid data
+    Entry-->>Main: Return AgeSample
+    Main->>Stats: Calculate statistics
+    Stats-->>Main: Return min, max, average, median
+    Main->>Report: Display results
+    Report-->>User: Show final report
+```
+
+The menu is handled directly in `__main__.py`.
+
+## Team responsibilities
 
 ```text
-main.py
-   ├── displays the menu
-   ├── receives the user's option
-   └── calls the corresponding option once it is implemented
+Person 1 - Main / Integration
+└── school_age_statistics/__main__.py
 ```
 
-## Run the application
+```text
+Person 2 - Security
+└── school_age_statistics/security/password.py
+```
+
+```text
+Person 3 - Data Entry + Data Contract
+├── school_age_statistics/data_entry/age_input.py
+└── school_age_statistics/data_entry/age_sample.py
+```
+
+```text
+Person 4 - Calculations
+└── school_age_statistics/calculations/age_statistics.py
+```
+
+```text
+Person 5 - UI / Reports
+└── school_age_statistics/ui/report.py
+```
+
+## Collaboration rules
+
+- Each person should mainly work inside their assigned file or folder.
+- Avoid editing another person's files unless the team agrees first.
+- The main integration should happen in `school_age_statistics/__main__.py`.
+- The data entry person is responsible for returning validated data.
+- The calculations person should not ask for user input.
+- The UI person should not calculate statistics.
+- The security person should only handle password-related logic.
+
+## How to run the application
+
+The application will be executed as a Python module:
 
 ```bash
-python main.py
+python -m school_age_statistics
+```
+
+## Dependency plan
+
+This project plans to use Pydantic for data validation.
+
+When implementation starts, install the dependencies with:
+
+```bash
+pip install -r requirements.txt
 ```
