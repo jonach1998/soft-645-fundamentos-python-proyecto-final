@@ -36,8 +36,7 @@ soft-645-fundamentos-python-proyecto-final/
     │   └── age_statistics.py
     ├── data_entry/
     │   ├── __init__.py
-    │   ├── age_input.py
-    │   └── age_sample.py
+    │   └── age_input.py
     ├── security/
     │   ├── __init__.py
     │   └── password.py
@@ -54,7 +53,6 @@ sequenceDiagram
     participant Main as __main__.py
     participant Security as security/password.py
     participant Entry as data_entry/age_input.py
-    participant Contract as data_entry/age_sample.py
     participant Stats as calculations/age_statistics.py
     participant Report as ui/report.py
 
@@ -65,9 +63,8 @@ sequenceDiagram
     Main->>User: Show menu
     User->>Main: Select an option
     Main->>Entry: Request sample size and ages
-    Entry->>Contract: Create validated AgeSample
-    Contract-->>Entry: Return valid data
-    Entry-->>Main: Return AgeSample
+    Entry->>Entry: Validate input and create dictionary
+    Entry-->>Main: Return age data dictionary
     Main->>Stats: Calculate statistics
     Stats-->>Main: Return min, max, average, median
     Main->>Report: Display results
@@ -75,6 +72,17 @@ sequenceDiagram
 ```
 
 The menu is handled directly in `__main__.py`.
+
+## Data format
+
+The data entry module returns a simple dictionary with this structure.
+
+```python
+{
+    "sample_size": 3,
+    "ages": [10, 12, 11],
+}
+```
 
 ## Team responsibilities
 
@@ -89,9 +97,8 @@ ESTEBAN - Security
 ```
 
 ```text
-JONATHAN - Data Entry + Data Contract
-├── school_age_statistics/data_entry/age_input.py
-└── school_age_statistics/data_entry/age_sample.py
+JONATHAN - Data Entry + Validation
+└── school_age_statistics/data_entry/age_input.py
 ```
 
 ```text
@@ -109,6 +116,7 @@ PAOLA - UI / Reports
 - Each person should mainly work inside their assigned file or folder.
 - Avoid editing another person's files unless the team agrees first.
 - The main integration should happen in `school_age_statistics/__main__.py`.
+- Code names should be written in English, but user-facing messages should be written in Spanish.
 - The data entry person is responsible for returning validated data.
 - The calculations person should not ask for user input.
 - The UI person should not calculate statistics.
@@ -125,10 +133,6 @@ python -m school_age_statistics
 
 ## Dependency plan
 
-This project plans to use Pydantic for data validation.
+This project currently uses only the Python standard library.
 
-When implementation starts, install the dependencies with:
-
-```bash
-pip install -r requirements.txt
-```
+If a dependency is added later, it should be documented in `requirements.txt`.
