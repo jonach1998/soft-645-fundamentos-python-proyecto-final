@@ -113,6 +113,7 @@ PAOLA - UI / Reports
 - The calculations person should not ask for user input.
 - The UI person should not calculate statistics.
 - The security person should only handle password-related logic.
+- Next update on July 6th.
 
 ## How to run the application
 
