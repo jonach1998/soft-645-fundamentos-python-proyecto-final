@@ -116,7 +116,6 @@ PAOLA - UI / Reports
 - Each person should mainly work inside their assigned file or folder.
 - Avoid editing another person's files unless the team agrees first.
 - The main integration should happen in `school_age_statistics/__main__.py`.
-- Code names should be written in English, but user-facing messages should be written in Spanish.
 - The data entry person is responsible for returning validated data.
 - The calculations person should not ask for user input.
 - The UI person should not calculate statistics.
@@ -136,3 +135,7 @@ python -m school_age_statistics
 This project currently uses only the Python standard library.
 
 If a dependency is added later, it should be documented in `requirements.txt`.
+
+```bash
+pip install -r requirements.txt
+```
