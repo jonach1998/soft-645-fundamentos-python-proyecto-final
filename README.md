@@ -79,28 +79,28 @@ The menu is handled directly in `__main__.py`.
 ## Team responsibilities
 
 ```text
-Person 1 - Main / Integration
+JOEL - Main / Integration
 └── school_age_statistics/__main__.py
 ```
 
 ```text
-Person 2 - Security
+ESTEBAN - Security
 └── school_age_statistics/security/password.py
 ```
 
 ```text
-Person 3 - Data Entry + Data Contract
+JONATHAN - Data Entry + Data Contract
 ├── school_age_statistics/data_entry/age_input.py
 └── school_age_statistics/data_entry/age_sample.py
 ```
 
 ```text
-Person 4 - Calculations
+SEBASTIAN - Calculations
 └── school_age_statistics/calculations/age_statistics.py
 ```
 
 ```text
-Person 5 - UI / Reports
+PAOLA - UI / Reports
 └── school_age_statistics/ui/report.py
 ```
 
@@ -113,6 +113,7 @@ Person 5 - UI / Reports
 - The calculations person should not ask for user input.
 - The UI person should not calculate statistics.
 - The security person should only handle password-related logic.
+- Next update on July 6th.
 
 ## How to run the application
 
