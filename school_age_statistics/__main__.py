@@ -1,5 +1,8 @@
 from datetime import datetime
 
+from school_age_statistics.security.password import validar_contrasena
+from school_age_statistics.data_entry.age_input import request_age_sample
+
 
 def mostrar_fecha_inicio():
     """
@@ -20,8 +23,10 @@ def mostrar_menu():
     Muestra el menú principal del sistema.
     """
     print("\nMENÚ PRINCIPAL")
-    print("1. Ingresar edades y calcular estadísticas")
-    print("2. Salir")
+    print("1. Ingresar muestra de edades")
+    print("2. Calcular estadísticas")
+    print("3. Mostrar reporte")
+    print("4. Salir")
 
 
 def leer_opcion():
@@ -31,23 +36,59 @@ def leer_opcion():
     while True:
         opcion = input("Seleccione una opción: ").strip()
 
-        if opcion in ["1", "2"]:
+        if opcion in ["1", "2", "3", "4"]:
             return opcion
 
-        print("Opción inválida. Debe seleccionar 1 o 2.")
+        print("Opción inválida. Debe seleccionar una opción del 1 al 4.")
 
 
-def opcion_calcular_estadisticas():
+def ingresar_muestra_edades():
     """
-    Opción temporal mientras se desarrollan los demás módulos del proyecto.
+    Llama la función encargada de solicitar la muestra de edades.
     """
-    print("\nEsta opción todavía está en desarrollo.")
-    print("Cuando estén listas las demás clases, aquí se integrará:")
-    print("- Validación de contraseña")
-    print("- Solicitud del tamaño de la muestra")
-    print("- Ingreso de edades")
-    print("- Cálculo de estadísticas")
-    print("- Reporte final")
+    print("\nIngreso de muestra de edades")
+
+    muestra_edades = request_age_sample()
+
+    print("\nMuestra registrada correctamente.")
+    print("Las edades ingresadas fueron:")
+    print(muestra_edades)
+
+    return muestra_edades
+
+
+def calcular_estadisticas(muestra_edades):
+    """
+    Función temporal mientras se realiza la clase de cálculos.
+    """
+    if muestra_edades is None:
+        print("\nPrimero debe ingresar una muestra de edades.")
+        return None
+
+    print("\nFalta que se realice la clase de cálculos.")
+    print("Aquí se calculará:")
+    print("- Edad mínima")
+    print("- Edad máxima")
+    print("- Promedio")
+    print("- Mediana")
+
+    return None
+
+
+def mostrar_reporte(muestra_edades, estadisticas):
+    """
+    Función temporal mientras se realiza la clase de reportes.
+    """
+    if muestra_edades is None:
+        print("\nPrimero debe ingresar una muestra de edades.")
+        return
+
+    if estadisticas is None:
+        print("\nFalta que se realice la clase de reporte y la clase de cálculos.")
+        print("Cuando estén listas, aquí se mostrará el reporte final.")
+        return
+
+    print("\nFalta que se realice la clase de reportes.")
 
 
 def iniciar_aplicacion():
@@ -56,14 +97,33 @@ def iniciar_aplicacion():
     """
     mostrar_fecha_inicio()
 
+    print("\nAntes de ingresar al sistema debe validar la contraseña.")
+
+    acceso_permitido = validar_contrasena()
+
+    if not acceso_permitido:
+        print("\nAcceso denegado. No puede ingresar al sistema.")
+        return
+
+    print("\nAcceso concedido. Bienvenido al sistema.")
+
+    muestra_edades = None
+    estadisticas = None
+
     while True:
         mostrar_menu()
         opcion = leer_opcion()
 
         if opcion == "1":
-            opcion_calcular_estadisticas()
+            muestra_edades = ingresar_muestra_edades()
 
         elif opcion == "2":
+            estadisticas = calcular_estadisticas(muestra_edades)
+
+        elif opcion == "3":
+            mostrar_reporte(muestra_edades, estadisticas)
+
+        elif opcion == "4":
             print("\nGracias por utilizar el sistema.")
             print("Programa finalizado.")
             break
