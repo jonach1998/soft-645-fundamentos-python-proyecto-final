@@ -1,5 +1,5 @@
 _MIN_AGE = 1
-_MAX_AGE = 120
+_MAX_AGE = 100
 
 
 def request_age_sample():
