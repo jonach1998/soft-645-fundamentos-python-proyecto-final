@@ -22,8 +22,8 @@ return (edades[centro -1] + edades [centro]) / 2
 
 def calcular_estadisticas(muestra_edades): #Para respetar como esta hecho en Main.
   return {
-    "edad_max": calculo_edad_máxima(muestra_edades),
-    "edad_min": calculo_edad_minima(muestra_edades),
-    "edad_promedio": calculo_promedio_edades(muestra_edades),
-    "edad_mediana": calculo_mediana_edades(muestra_edades),}
+    "max_age": calculo_edad_máxima(muestra_edades),
+    "min_age": calculo_edad_minima(muestra_edades),
+    "average": calculo_promedio_edades(muestra_edades),
+    "median": calculo_mediana_edades(muestra_edades),}
   
