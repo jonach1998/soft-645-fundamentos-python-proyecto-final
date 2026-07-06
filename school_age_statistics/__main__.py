@@ -2,6 +2,7 @@ from datetime import datetime
 
 from school_age_statistics.security.password import validar_contrasena
 from school_age_statistics.data_entry.age_input import request_age_sample
+from school_age_statistics.calculations.age_statistics import calcular_estadisticas
 from school_age_statistics.ui.report import mostrar_reporte
 
 
@@ -58,22 +59,20 @@ def ingresar_muestra_edades():
     return muestra_edades
 
 
-def calcular_estadisticas(muestra_edades):
+def opcion_calcular_estadisticas(muestra_edades):
     """
-    Función temporal mientras se realiza la clase de cálculos.
+    Calcula las estadísticas de la muestra de edades ingresada.
     """
     if muestra_edades is None:
         print("\nPrimero debe ingresar una muestra de edades.")
         return None
 
-    print("\nFalta que se realice la clase de cálculos.")
-    print("Aquí se calculará:")
-    print("- Edad mínima")
-    print("- Edad máxima")
-    print("- Promedio")
-    print("- Mediana")
+    estadisticas = calcular_estadisticas(muestra_edades)
 
-    return None
+    print("\nEstadísticas calculadas correctamente.")
+    print("Ya puede seleccionar la opción 3 para mostrar el reporte.")
+
+    return estadisticas
 
 
 def opcion_mostrar_reporte(muestra_edades, estadisticas):
@@ -85,8 +84,7 @@ def opcion_mostrar_reporte(muestra_edades, estadisticas):
         return
 
     if estadisticas is None:
-        print("\nFalta que se realice la clase de cálculos.")
-        print("Cuando las estadísticas estén listas, aquí se mostrará el reporte final.")
+        print("\nPrimero debe calcular las estadísticas.")
         return
 
     reporte_mostrado = mostrar_reporte(muestra_edades, estadisticas)
@@ -122,9 +120,10 @@ def iniciar_aplicacion():
 
         if opcion == "1":
             muestra_edades = ingresar_muestra_edades()
+            estadisticas = None
 
         elif opcion == "2":
-            estadisticas = calcular_estadisticas(muestra_edades)
+            estadisticas = opcion_calcular_estadisticas(muestra_edades)
 
         elif opcion == "3":
             opcion_mostrar_reporte(muestra_edades, estadisticas)
