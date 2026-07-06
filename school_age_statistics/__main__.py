@@ -2,6 +2,7 @@ from datetime import datetime
 
 from school_age_statistics.security.password import validar_contrasena
 from school_age_statistics.data_entry.age_input import request_age_sample
+from school_age_statistics.ui.report import mostrar_reporte
 
 
 def mostrar_fecha_inicio():
@@ -75,20 +76,25 @@ def calcular_estadisticas(muestra_edades):
     return None
 
 
-def mostrar_reporte(muestra_edades, estadisticas):
+def opcion_mostrar_reporte(muestra_edades, estadisticas):
     """
-    Función temporal mientras se realiza la clase de reportes.
+    Llama la función encargada de mostrar el reporte.
     """
     if muestra_edades is None:
         print("\nPrimero debe ingresar una muestra de edades.")
         return
 
     if estadisticas is None:
-        print("\nFalta que se realice la clase de reporte y la clase de cálculos.")
-        print("Cuando estén listas, aquí se mostrará el reporte final.")
+        print("\nFalta que se realice la clase de cálculos.")
+        print("Cuando las estadísticas estén listas, aquí se mostrará el reporte final.")
         return
 
-    print("\nFalta que se realice la clase de reportes.")
+    reporte_mostrado = mostrar_reporte(muestra_edades, estadisticas)
+
+    if reporte_mostrado:
+        print("\nReporte mostrado correctamente.")
+    else:
+        print("\nNo se pudo mostrar el reporte porque faltan datos.")
 
 
 def iniciar_aplicacion():
@@ -121,7 +127,7 @@ def iniciar_aplicacion():
             estadisticas = calcular_estadisticas(muestra_edades)
 
         elif opcion == "3":
-            mostrar_reporte(muestra_edades, estadisticas)
+            opcion_mostrar_reporte(muestra_edades, estadisticas)
 
         elif opcion == "4":
             print("\nGracias por utilizar el sistema.")
