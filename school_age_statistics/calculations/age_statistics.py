@@ -1,15 +1,15 @@
-def calculo_edad_maxima (muestra_edades):
+def calcular_edad_maxima (muestra_edades):
   return max(muestra_edades["ages"])
 
-def calculo_edad_minima (muestra_edades):
+def calcular_edad_minima (muestra_edades):
   return min(muestra_edades["ages"])
 
-def calculo_promedio_edades (muestra_edades):
+def calcular_promedio_edades (muestra_edades):
   edades = muestra_edades ["ages"]
   promedio = sum(edades)/ len(edades)
   return round(promedio, 1)
 
-def calculo_mediana_edades(muestra_edades):
+def calcular_mediana_edades(muestra_edades):
     edades = sorted(muestra_edades["ages"])
 
     total = len(edades)
@@ -22,8 +22,8 @@ def calculo_mediana_edades(muestra_edades):
 
 def calcular_estadisticas(muestra_edades): #Para respetar como esta hecho en Main.
   return {
-    "max_age": calculo_edad_maxima(muestra_edades), #Basandonos en Reportes
-    "min_age": calculo_edad_minima(muestra_edades), #Basandonos en Reportes
-    "average": calculo_promedio_edades(muestra_edades), #Basandonos en Reportes
-    "median": calculo_mediana_edades(muestra_edades),} #Basandonos en Reportes
+    "max_age": calcular_edad_maxima(muestra_edades), #Basandonos en Reportes
+    "min_age": calcular_edad_minima(muestra_edades), #Basandonos en Reportes
+    "average": calcular_promedio_edades(muestra_edades), #Basandonos en Reportes
+    "median": calcular_mediana_edades(muestra_edades),} #Basandonos en Reportes
   
