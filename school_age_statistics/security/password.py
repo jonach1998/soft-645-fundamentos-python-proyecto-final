@@ -1,3 +1,5 @@
+import getpass
+
 def validar_contrasena():
     contrasena_correcta = "SanPascualin2026"
     intentos = 3
