@@ -1,8 +1,8 @@
 from datetime import datetime
 
-from school_age_statistics.security.password import validar_contrasena
-from school_age_statistics.data_entry.age_input import request_age_sample
 from school_age_statistics.calculations.age_statistics import calcular_estadisticas
+from school_age_statistics.data_entry.age_input import request_age_sample
+from school_age_statistics.security.password import validar_contrasena
 from school_age_statistics.ui.report import mostrar_reporte
 
 
@@ -26,9 +26,8 @@ def mostrar_menu():
     """
     print("\nMENÚ PRINCIPAL")
     print("1. Ingresar muestra de edades")
-    print("2. Calcular estadísticas")
-    print("3. Mostrar reporte")
-    print("4. Salir")
+    print("2. Mostrar reporte")
+    print("3. Salir")
 
 
 def leer_opcion():
@@ -54,7 +53,7 @@ def ingresar_muestra_edades():
 
     print("\nMuestra registrada correctamente.")
     print("Las edades ingresadas fueron:")
-    print(muestra_edades)
+    print(muestra_edades["ages"])
 
     return muestra_edades
 
@@ -79,13 +78,8 @@ def opcion_mostrar_reporte(muestra_edades, estadisticas):
     """
     Llama la función encargada de mostrar el reporte.
     """
-    if muestra_edades is None:
-        print("\nPrimero debe ingresar una muestra de edades.")
-        return
 
-    if estadisticas is None:
-        print("\nPrimero debe calcular las estadísticas.")
-        return
+    estadisticas = opcion_calcular_estadisticas(muestra_edades)
 
     reporte_mostrado = mostrar_reporte(muestra_edades, estadisticas)
 
@@ -120,15 +114,11 @@ def iniciar_aplicacion():
 
         if opcion == "1":
             muestra_edades = ingresar_muestra_edades()
-            estadisticas = None
 
         elif opcion == "2":
-            estadisticas = opcion_calcular_estadisticas(muestra_edades)
-
-        elif opcion == "3":
             opcion_mostrar_reporte(muestra_edades, estadisticas)
 
-        elif opcion == "4":
+        elif opcion == "3":
             print("\nGracias por utilizar el sistema.")
             print("Programa finalizado.")
             break
